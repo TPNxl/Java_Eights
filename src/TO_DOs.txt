@@ -1,0 +1,14 @@
+TO DOs
+
+- Move all deck functions over to Deck.java
+- Two deck piles (draw and discard)
+- Be able to regenerate the deck, based on player data
+- Make sure that there are enough cards for the game, and give a warning if there are only 10 over what is needed to play
+- Add more functions to console
+- Use an ArrayList<Player> to add and remove players variably, maybe even during the game
+- Diagrams
+
+THINGS TO DO IF THERE'S TIME
+- Local multiplayer support (on same computer)
+- Networking
+- JavaFX

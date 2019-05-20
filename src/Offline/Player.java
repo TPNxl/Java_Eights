@@ -92,10 +92,6 @@ public class Player {
     }
     void play(Card card) {
         switch(card.getType()) {
-            case "plusTwo":
-                CURRENT_CARD = new Card("plusTwo",CURRENT_CARD.getColor());
-                nextPlayer().deal(2);
-                break;
             case "plusFour":
                 CURRENT_CARD = new Card("plusFour",CURRENT_CARD.getColor());
                 nextPlayer().deal(4);
@@ -106,13 +102,13 @@ public class Player {
                 chooseColor("color");
                 break;
             case "reverse":
-                CURRENT_CARD = new Card("reverse",CURRENT_CARD.getColor());
                 if(CURRENT_DIRECTION.equals("forward")) {
                     CURRENT_DIRECTION = "reverse";
                 } else {
                     CURRENT_DIRECTION = "forward";
                 }
-                break;
+            case "plusTwo":
+                nextPlayer().deal(2);
             default:
                 CURRENT_CARD = card;
                 break;
@@ -156,7 +152,7 @@ public class Player {
     public String turn() {
         ArrayList<Card> validcards = Card.validCard(cards);
         String returnStatement = "";
-        Card cardPlayed;
+        Card cardPlayed = null;
         if(isHuman()) {
             playerTurnMessage(ID);
         }
@@ -191,7 +187,7 @@ public class Player {
         }
         else {
             if(isHuman()) {
-                returnStatement += "You don't have any valid cards. You drew a "+deal(1)+". You now have "+cards()+" cards";
+                returnStatement += "You don't have any valid cards. You drew a card. You now have "+cards()+" cards";
             } else {
                 deal(1);
                 returnStatement += "Player "+ID+" didn't have any valid cards. Player "+ID+" drew a card. Player "+ID+" now has "+cards()+" cards";
@@ -232,6 +228,20 @@ public class Player {
         } else {
             CURRENT_DIRECTION = "forward";
             return null;
+        }
+    }
+    static Player currentPlayer() {
+        switch(CURRENT_PLAYER) {
+            case 1:
+                return p1;
+            case 2:
+                return p2;
+            case 3:
+                return p3;
+            case 4:
+                return p4;
+            default:
+                return null;
         }
     }
 }
